@@ -1,0 +1,78 @@
+' Gambas class file
+
+Public Sub Form_Open()
+
+    TextBoxRuta.Drop = True
+
+End
+
+Public Sub TextBoxRuta_Drop()
+
+    Last.text = Split(Drag.data, "\r")[0]
+    Last.text = Replace(Replace(Last.text, "%20", ""), "file://", "")
+
+End
+
+Public Sub ButtonLeer_Click()
+
+    Dim f As String
+
+    For Each f In Dir(TextBoxRuta.text, "*.pdf").Sort()
+        ListBoxFicherosOriginales.Add(f)
+    Next
+
+End
+
+Public Sub ButtonOrden1_Click()
+
+    Dim f1 As String
+    Dim f2 As String
+
+    Dim lista As New String[]
+
+    ordena("0m", ListBoxFicherosOriginales.List, lista)
+    ordena("0.25m", ListBoxFicherosOriginales.List, lista)
+    ordena("0.5m", ListBoxFicherosOriginales.List, lista)
+    ordena("1m", ListBoxFicherosOriginales.List, lista)
+    ordena("3m", ListBoxFicherosOriginales.List, lista)
+    ordena("6m", ListBoxFicherosOriginales.List, lista)
+    ordena("12m", ListBoxFicherosOriginales.List, lista)
+
+    ListBoxFicherosOriginales.List = lista
+    ListBoxFicherosOriginales.Refresh()
+
+End
+
+Public Sub ordena(patron As String, listaOrigen As String[], listadestino As String[])
+
+    Dim f As String
+    Dim listatemporal As New String[]
+    Dim listasalida As New String[]
+    Dim a As Integer
+
+    For Each f In listaOrigen
+        If InStr(Upper(f), Upper(patron)) <> 0 Then
+            listadestino.Add(f)
+        Endif
+    Next
+
+End
+
+Public Sub Button2Copiar_Click()
+
+    Clipboard.Copy(atexto(ListBoxFicherosOriginales.list), "text/html")
+
+End
+
+Public Function atexto(c As String[]) As String
+
+    Return c.Join("\n")
+
+End
+
+Public Sub Button2_Click()
+
+    Form1.rutainicial = TextBoxRuta.text
+    Form1.Show()
+
+End

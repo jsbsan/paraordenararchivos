@@ -1,0 +1,22 @@
+# Gambas Project File 3.0
+Title=ParaOrdenarArchivos
+Startup=FMain
+Icon=Rename icono ficheros icon multiple archivos cambiar renombrar.png
+Version=0.0.2
+Component=gb.image
+Component=gb.gui.qt
+Component=gb.form
+Description="Utilidad especial para Ordena lista de ficheros  de fichas y cronologia y cambiarlos de nombre"
+TabSize=4
+Language=en_US
+Maintainer=jsbsan
+Address=jusabejusabe@gmail.com
+Url=https://jsbsan.blogspot.com/
+License=General Public License
+PackageName=paraordenararchivos-0.0.2
+CreateEachDirectory=1
+Packager=1
+Systems=debian
+Menus=debian:"Applications/Accessibility"
+Categories=debian:"Accessibility"
+Groups=debian:"admin"

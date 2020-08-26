@@ -1,0 +1,33 @@
+' Gambas class file
+
+Public rutainicial As String
+
+Public Sub Form_Open()
+
+    TextBoxRuta.text = rutainicial
+
+End
+
+Public Sub Button1_Click()
+
+    Dim listaOrigen As String[] = Split(TextAreaOrigen.text, "\n")
+    Dim listaDestino As String[] = Split(TextAreaDestino.text, "\n")
+    Dim a As Integer
+
+    For a = 0 To listaDestino.count - 1
+        If listaOrigen[a] = "" Then Continue
+        rename(TextBoxRuta.text & "/" & listaOrigen[a], "/home/mint/PDF/" & listaDestino[a])
+
+    Next
+    Message.info("Ya he terminado")
+
+End
+
+Public Sub rename(inicial As String, final As String)
+
+    Try Copy inicial To final
+    If Error Then
+        Message.Info("Error:" & Error.text & gb.CrLf & "Inicial:" & inicial & gb.CrLf & "Final: " & final)
+    Endif
+
+End

@@ -1,0 +1,36 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,137,81)
+  Icon = Picture["Rename icono ficheros icon multiple archivos cambiar renombrar.png"]
+  { TextAreaOrigen TextArea
+    MoveScaled(2,11,46,65)
+  }
+  { TextAreaDestino TextArea
+    MoveScaled(53,11,39,65)
+  }
+  { Button1 Button
+    MoveScaled(100,16,29,7)
+    Text = ("Copiar y Renombrar")
+  }
+  { TextBoxRuta TextBox
+    MoveScaled(31,1,68,3)
+  }
+  { Label1 Label
+    MoveScaled(53,7,15,2)
+    Text = ("Nombre finales:")
+  }
+  { Label2 Label
+    MoveScaled(2,7,15,2)
+    Text = ("Nombre Iniciales:")
+  }
+  { Label3 Label
+    MoveScaled(3,1,29,3)
+    Text = ("Ruta donde estan los ficheros:")
+  }
+  { Label4 Label
+    MoveScaled(96,28,39,7)
+    Text = ("Carpeta Destino /home/usuario/pdf")
+    Alignment = Align.Center
+  }
+}
