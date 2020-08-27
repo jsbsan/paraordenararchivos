@@ -2,8 +2,9 @@
 
 Public Sub Form_Open()
 
+    Me.Title = "ParaOrdenarArchivos. Version " & Application.Version
     TextBoxRuta.Drop = True
-
+Settings.Read(Me)
 End
 
 Public Sub TextBoxRuta_Drop()
@@ -25,13 +26,11 @@ End
 
 Public Sub ButtonOrden1_Click()
 
-    Dim f1 As String
-    Dim f2 As String
-
     Dim lista As New String[]
 
     ordena("0m", ListBoxFicherosOriginales.List, lista)
     ordena("0.25m", ListBoxFicherosOriginales.List, lista)
+    ordena("0,25m", ListBoxFicherosOriginales.List, lista)
     ordena("0.5m", ListBoxFicherosOriginales.List, lista)
     ordena("1m", ListBoxFicherosOriginales.List, lista)
     ordena("3m", ListBoxFicherosOriginales.List, lista)
@@ -46,9 +45,6 @@ End
 Public Sub ordena(patron As String, listaOrigen As String[], listadestino As String[])
 
     Dim f As String
-    Dim listatemporal As New String[]
-    Dim listasalida As New String[]
-    Dim a As Integer
 
     For Each f In listaOrigen
         If InStr(Upper(f), Upper(patron)) <> 0 Then
@@ -60,7 +56,7 @@ End
 
 Public Sub Button2Copiar_Click()
 
-    Clipboard.Copy(atexto(ListBoxFicherosOriginales.list), "text/html")
+    Clipboard.Copy(atexto(ListBoxFicherosOriginales.list), "text/plain")
 
 End
 
@@ -74,5 +70,18 @@ Public Sub Button2_Click()
 
     Form1.rutainicial = TextBoxRuta.text
     Form1.Show()
+
+End
+
+Public Sub ButtonLimpiar_Click()
+
+    TextBoxRuta.text = ""
+    ListBoxFicherosOriginales.clear()
+
+End
+
+Public Sub Form_Close()
+
+    Settings.write(Me)
 
 End

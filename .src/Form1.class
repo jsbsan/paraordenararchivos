@@ -4,7 +4,9 @@ Public rutainicial As String
 
 Public Sub Form_Open()
 
+    Me.Title = "ParaOrdenarArchivos. Version " & Application.Version
     TextBoxRuta.text = rutainicial
+    Settings.read(Me)
 
 End
 
@@ -14,6 +16,7 @@ Public Sub Button1_Click()
     Dim listaDestino As String[] = Split(TextAreaDestino.text, "\n")
     Dim a As Integer
 
+    TextArealog.text = ""
     For a = 0 To listaDestino.count - 1
         If listaOrigen[a] = "" Then Continue
         rename(TextBoxRuta.text & "/" & listaOrigen[a], "/home/mint/PDF/" & listaDestino[a])
@@ -28,6 +31,29 @@ Public Sub rename(inicial As String, final As String)
     Try Copy inicial To final
     If Error Then
         Message.Info("Error:" & Error.text & gb.CrLf & "Inicial:" & inicial & gb.CrLf & "Final: " & final)
+        TextArealog.text &= Error.text & ": " & File.Name(inicial) & "  [" & Mid$(File.Name(finaL), 1, 2) & "]" & gb.CrLf
     Endif
+
+End
+
+Public Sub ButtonRenombrar_Click()
+
+    Dim listaDestino As String[] = Split(TextAreaOrigen.text, "\n")
+    Dim a As Integer
+
+    For a = 0 To listaDestino.count - 1
+        If listaDestino[a] = "" Then
+        Else
+            listaDestino[a] = Right("00" & Str$(a + 1), 2) & " " & listaDestino[a]
+        Endif
+
+    Next
+    TextAreaDestino.text = listaDestino.Join("\n")
+
+End
+
+Public Sub Form_Close()
+
+    Settings.write(Me)
 
 End
